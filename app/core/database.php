@@ -11,7 +11,7 @@ class Database {
     private function __construct(){
         
        
-         $this->config = require_once __DIR__ . '/../../config/dashboard.php';
+         $this->config = require_once __DIR__ . '/../../config/db.php';
          
         try {
             $this->connection = new PDO("mysql:host={$this->config['host']};dbname={$this->config['dbname']}",
