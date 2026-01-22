@@ -1,4 +1,5 @@
 <?php
+
 class Router
 {
 
@@ -30,37 +31,4 @@ public function dispach($url){
     $controller->$methodName();
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
