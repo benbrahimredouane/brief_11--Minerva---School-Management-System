@@ -16,10 +16,54 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
 
         .register-container {
             background: white;
@@ -28,6 +72,7 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 450px;
+            margin-top: 80px;
         }
 
         .register-header {
@@ -188,21 +233,34 @@
     </style>
 </head>
 <body>
+     <header>
+        <nav>
+            <div class="logo">Minerva</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            </div>
+        </nav>
+    </header>
+
     <div class="register-container">
         <div class="register-header">
             <h1>Minerva</h1>
             <p>Create Your Account</p>
         </div>
 
-        <?php if (isset($error)): ?>
-            <div class="error-message show"><?php echo htmlspecialchars($error); ?></div>
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="error-message show"><?php echo htmlspecialchars($_SESSION['error']); ?></div>
+            <?php unset($_SESSION['error']); ?>
         <?php endif; ?>
 
-        <?php if (isset($success)): ?>
-            <div class="success-message show"><?php echo htmlspecialchars($success); ?></div>
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="success-message show"><?php echo htmlspecialchars($_SESSION['success']); ?></div>
+            <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
 
-        <form method="POST" action="/auth/register" id="registerForm">
+        <form method="POST" action="/register" id="registerForm">
             <div class="form-row">
                 <div class="form-group">
                     <label for="first_name">First Name</label>
@@ -237,8 +295,6 @@
                     required
                 >
             </div>
-
-          
 
             <div class="form-group">
                 <label for="password">Password</label>
