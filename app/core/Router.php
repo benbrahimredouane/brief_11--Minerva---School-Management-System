@@ -12,7 +12,7 @@ public function POST($path,$action){
     $this->router['POST'][$path] = $action;
 }
 
-public function dispach($url){
+public function dispatch($url){
     $path = parse_url($url,PHP_URL_PATH);
     $method = $_SERVER['REQUEST_METHOD'];
     $action = $this->router[$method][$path] ?? null;
