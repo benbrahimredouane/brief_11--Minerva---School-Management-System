@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../core/database.php';
 
     class User{
         private PDO $pdo;
